@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Well-being | Collective Yoga & Mindfulness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Add Markdown Parser for AI responses -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,400&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfbf9; /* Warm off-white */
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+        }
+
+        /* Smooth fade transition for page switching */
+        .page-section {
+            transition: opacity 0.3s ease-in-out;
+            display: none;
+            opacity: 0;
+        }
+
+        .page-section.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Markdown Styles */
+        .markdown-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .markdown-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .markdown-content strong { font-weight: 700; color: #0f766e; }
+        .markdown-content p { margin-bottom: 0.75rem; }
+    </style>
+</head>
+<body class="text-stone-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center cursor-pointer" onclick="navigateTo('home')">
+                    <i data-lucide="lotus" class="h-8 w-8 text-teal-600 mr-2"></i>
+                    <span class="font-bold text-xl text-stone-900 tracking-tight">Sangha<span class="text-teal-600">Well</span></span>
+                </div>
+                <div class="hidden md:flex space-x-4 lg:space-x-6">
+                    <button onclick="navigateTo('home')" class="text-stone-600 hover:text-teal-600 font-medium transition text-sm lg:text-base">Home</button>
+                    <button onclick="navigateTo('mindfulness')" class="text-stone-600 hover:text-teal-600 font-medium transition text-sm lg:text-base">Mindfulness</button>
+                    <button onclick="navigateTo('meditation-depth')" class="text-stone-600 hover:text-teal-600 font-medium transition text-sm lg:text-base">Meditation Focus</button>
+                    <button onclick="navigateTo('asanas')" class="text-stone-600 hover:text-teal-600 font-medium transition text-sm lg:text-base">Basic Asanas</button>
+                    <button onclick="navigateTo('social')" class="text-stone-600 hover:text-teal-600 font-medium transition text-sm lg:text-base">Social Connection</button>
+                    <button onclick="navigateTo('respect')" class="text-stone-600 hover:text-teal-600 font-medium transition text-sm lg:text-base">Mutual Respect</button>
+                    <!-- AI Feature Link -->
+                    <button onclick="navigateTo('ai-tools')" class="text-purple-700 bg-purple-50 hover:bg-purple-100 px-3 py-1 rounded-full font-semibold transition flex items-center text-sm lg:text-base">
+                        <i data-lucide="sparkles" class="w-4 h-4 mr-1"></i> AI Guide
+                    </button>
+                </div>
+                <!-- Mobile Menu Button (simplified) -->
+                <button class="md:hidden text-stone-600" onclick="navigateTo('home')">
+                    <i data-lucide="home" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow">
+
+        <!-- ================= HOME PAGE ================= -->
+        <div id="home" class="page-section active">
+            <!-- Hero -->
+            <div class="relative bg-stone-900 text-white overflow-hidden">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Yoga Group" class="w-full h-full object-cover opacity-40">
+                </div>
+                <div class="relative max-w-6xl mx-auto px-4 py-24 sm:px-6 lg:py-32 flex flex-col items-center text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Strengthening Bonds Through <br/><span class="text-teal-300">Breath & Movement</span></h1>
+                    <p class="text-lg md:text-xl text-stone-200 max-w-2xl mb-10">
+                        Discover how collective mindfulness and community yoga sessions go beyond physical fitness to rebuild social trust, empathy, and mutual respect.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="navigateTo('meditation-depth')" class="bg-teal-600 hover:bg-teal-500 text-white px-8 py-3 rounded-full font-semibold transition transform hover:scale-105 shadow-lg flex items-center justify-center">
+                            Explore Meditation
+                            <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+                        </button>
+                        <button onclick="navigateTo('asanas')" class="bg-orange-600 hover:bg-orange-500 text-white px-8 py-3 rounded-full font-semibold transition transform hover:scale-105 shadow-lg flex items-center justify-center">
+                            Start Moving
+                            <i data-lucide="activity" class="ml-2 h-5 w-5"></i>
+                        </button>
+                        <button onclick="navigateTo('ai-tools')" class="bg-purple-600 hover:bg-purple-500 text-white px-8 py-3 rounded-full font-semibold transition transform hover:scale-105 shadow-lg flex items-center justify-center">
+                            <i data-lucide="sparkles" class="mr-2 h-5 w-5"></i>
+                            Try AI Guide
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Introduction -->
+            <div class="py-16 bg-white">
+                <div class="max-w-4xl mx-auto px-4 text-center">
+                    <h2 class="text-3xl font-bold text-stone-900 mb-6">More Than Just Exercise</h2>
+                    <p class="text-lg text-stone-600 leading-relaxed">
+                        In an increasingly digital and isolated world, practicing together offers a radical antidote to loneliness. When we breathe in sync, we regulate our nervous systems together (co-regulation), fostering a biological foundation for empathy and social cohesion.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Topics Grid -->
+            <div class="py-16 bg-stone-50">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <!-- Card 1 -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-stone-100 p-8 hover:shadow-md transition">
+                            <div class="bg-teal-100 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                                <i data-lucide="brain-circuit" class="text-teal-700 h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Collective Mindfulness</h3>
+                            <p class="text-stone-600 mb-6 text-sm">How group meditation creates "resonant" emotional states and reduces social anxiety.</p>
+                            <button onclick="navigateTo('mindfulness')" class="text-teal-700 font-semibold hover:text-teal-900 flex items-center text-sm">
+                                Read Detailed Analysis <i data-lucide="chevron-right" class="ml-1 h-4 w-4"></i>
+                            </button>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-stone-100 p-8 hover:shadow-md transition">
+                            <div class="bg-teal-100 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                                <i data-lucide="users" class="text-teal-700 h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Social Connection</h3>
+                            <p class="text-stone-600 mb-6 text-sm">The power of moving in unison and the psychology of "synchrony" in building trust.</p>
+                            <button onclick="navigateTo('social')" class="text-teal-700 font-semibold hover:text-teal-900 flex items-center text-sm">
+                                Read Detailed Analysis <i data-lucide="chevron-right" class="ml-1 h-4 w-4"></i>
+                            </button>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-stone-100 p-8 hover:shadow-md transition">
+                            <div class="bg-teal-100 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                                <i data-lucide="heart-handshake" class="text-teal-700 h-6 w-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Mutual Respect</h3>
+                            <p class="text-stone-600 mb-6 text-sm">Applying the ethics of Yoga (Yamas and Niyamas) to foster non-judgmental communities.</p>
+                            <button onclick="navigateTo('respect')" class="text-teal-700 font-semibold hover:text-teal-900 flex items-center text-sm">
+                                Read Detailed Analysis <i data-lucide="chevron-right" class="ml-1 h-4 w-4"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SUBTOPIC 1: MINDFULNESS ================= -->
+        <div id="mindfulness" class="page-section">
+            <div class="bg-teal-900 text-teal-50 py-12">
+                <div class="max-w-4xl mx-auto px-4">
+                    <button onclick="navigateTo('home')" class="mb-6 flex items-center text-teal-200 hover:text-white transition text-sm uppercase tracking-wider font-semibold">
+                        <i data-lucide="arrow-left" class="mr-2 h-4 w-4"></i> Back to Home
+                    </button>
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4">Collective Mindfulness</h1>
+                    <p class="text-xl text-teal-200">The ripple effect of inner peace on community dynamics.</p>
+                </div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto px-4 py-12">
+                <div class="prose prose-lg prose-stone mx-auto">
+                    <h3>The Science of Co-regulation</h3>
+                    <p>
+                        When individuals meditate together, a phenomenon known as <strong>co-regulation</strong> occurs. Just as a calm parent can soothe an anxious child without words, a group of people focusing on their breath creates a palpable field of calm. Neuroscientific studies suggest that group mindfulness can synchronize brainwave patterns, specifically alpha and theta waves, creating a shared state of relaxed alertness.
+                    </p>
+                    
+                    <div class="bg-stone-100 p-6 rounded-xl my-8 border-l-4 border-teal-500">
+                        <h4 class="text-teal-800 font-bold mt-0">Key Benefit: Reduced Reactivity</h4>
+                        <p class="mb-0 text-sm">Regular group practice strengthens the prefrontal cortex, allowing community members to respond to conflicts with pause and reflection rather than immediate emotional reactivity.</p>
+                    </div>
+
+                    <h3>Dissolving "Us vs. Them"</h3>
+                    <p>
+                        Mindfulness practice involves "Metta" (Loving-kindness) meditation. When done in a group, specifically visualizing well-being for those sitting around you, it actively rewires neural pathways associated with empathy. It breaks down the cognitive barriers that label others as separate or threatening, fostering a sense of <em>Common Humanity</em>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= NEW SUBTOPIC: MEDITATION DEEP DIVE ================= -->
+        <div id="meditation-depth" class="page-section">
+            <div class="bg-indigo-900 text-indigo-50 py-12">
+                <div class="max-w-4xl mx-auto px-4">
+                    <button onclick="navigateTo('home')" class="mb-6 flex items-center text-indigo-200 hover:text-white transition text-sm uppercase tracking-wider font-semibold">
+                        <i data-lucide="arrow-left" class="mr-2 h-4 w-4"></i> Back to Home
+                    </button>
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4">Meditation & Community Well-being</h1>
+                    <p class="text-xl text-indigo-200">Exploring the profound impact of collective stillness on societal health.</p>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4 py-12">
+                <div class="prose prose-lg prose-stone mx-auto">
+                    
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold text-stone-800 mb-6">The Ripple Effect of Shared Silence</h2>
+                        <p>
+                            While mindfulness focuses on the individual's present-moment awareness, <strong>collective meditation</strong> amplifies this effect. Research into "social contagion" suggests that emotional states are transferable. When a core group in a community practices peace, it creates a stabilizer effect for the entire network.
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-6 mt-8">
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                                <div class="text-indigo-600 mb-2"><i data-lucide="activity" class="h-8 w-8"></i></div>
+                                <h4 class="font-bold text-lg mb-2">Stress Reduction</h4>
+                                <p class="text-sm text-stone-600">Community-based stress reduction programs have been shown to lower neighborhood-level cortisol markers and reduce domestic conflict reports.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                                <div class="text-indigo-600 mb-2"><i data-lucide="shield" class="h-8 w-8"></i></div>
+                                <h4 class="font-bold text-lg mb-2">Community Resilience</h4>
+                                <p class="text-sm text-stone-600">Neighborhoods with active meditation groups recover faster from collective traumas (natural disasters, local tragedies) due to established support networks.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border-stone-200 my-12">
+
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold text-stone-800 mb-6">3 Pillars of Community Meditation</h2>
+                        
+                        <div class="space-y-8">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 mt-1">
+                                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold">1</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-stone-900">Intention Setting (Sankalpa)</h3>
+                                    <p class="text-stone-600">Before silence begins, the group voices a shared intention (e.g., "We practice for the peace of our street"). This unifies disparate minds toward a single pro-social goal.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 mt-1">
+                                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold">2</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-stone-900">Metta (Loving-Kindness)</h3>
+                                    <p class="text-stone-600">Practitioners actively visualize sending safety, health, and ease to their neighbors. This is the direct antidote to social isolation and xenophobia.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 mt-1">
+                                    <span class="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold">3</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-stone-900">The Circle (Mandala)</h3>
+                                    <p class="text-stone-600">Sitting in a circle rather than rows disrupts hierarchy. Everyone is equidistant from the center, reinforcing equality and mutual responsibility.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 p-8 rounded-2xl border border-indigo-100 text-center">
+                        <h3 class="text-2xl font-bold text-indigo-900 mb-4">Ready to start?</h3>
+                        <p class="text-indigo-700 mb-6">Use our AI Guide to generate a script for your first community circle.</p>
+                        <button onclick="navigateTo('ai-tools')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2 rounded-lg font-semibold transition shadow-md">
+                            Go to AI Tools
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= NEW SUBTOPIC: BASIC ASANAS ================= -->
+        <div id="asanas" class="page-section">
+            <div class="bg-orange-900 text-orange-50 py-12">
+                <div class="max-w-4xl mx-auto px-4">
+                    <button onclick="navigateTo('home')" class="mb-6 flex items-center text-orange-200 hover:text-white transition text-sm uppercase tracking-wider font-semibold">
+                        <i data-lucide="arrow-left" class="mr-2 h-4 w-4"></i> Back to Home
+                    </button>
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4">Basic Yoga Asanas</h1>
+                    <p class="text-xl text-orange-200">Simple poses to ground yourself and open your heart.</p>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-4 py-12">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Asana 1 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-md transition">
+                        <div class="h-64 overflow-hidden bg-stone-200">
+                            <img src="https://images.unsplash.com/photo-1544367563-12123d8d5d91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mountain Pose" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-stone-800 mb-1">Mountain Pose [Image of Mountain Pose Tadasana]</h3>
+                            <p class="text-sm text-orange-700 font-semibold mb-4">Tadasana</p>
+                            <p class="text-stone-600 mb-4">The foundation of all standing poses. It teaches us to stand firm and grounded like a mountain.</p>
+                            <h4 class="font-bold text-sm uppercase text-stone-500 mb-2">How to do it:</h4>
+                            <ul class="list-disc list-inside text-stone-600 space-y-1 text-sm">
+                                <li>Stand with big toes touching, heels slightly apart.</li>
+                                <li>Engage your thighs and lift your kneecaps.</li>
+                                <li>Roll shoulders back and down.</li>
+                                <li>Breathe deeply, feeling rooted to the earth.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Asana 2 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-md transition">
+                        <div class="h-64 overflow-hidden bg-stone-200">
+                            <img src="https://images.unsplash.com/photo-1566501206188-5dd0cf160a0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Child's Pose" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-stone-800 mb-1">Child's Pose [Image of Child's Pose Balasana]</h3>
+                            <p class="text-sm text-orange-700 font-semibold mb-4">Balasana</p>
+                            <p class="text-stone-600 mb-4">A resting pose that centers the mind and gently stretches the hips and thighs.</p>
+                            <h4 class="font-bold text-sm uppercase text-stone-500 mb-2">How to do it:</h4>
+                            <ul class="list-disc list-inside text-stone-600 space-y-1 text-sm">
+                                <li>Kneel on the floor, toes touching, knees apart.</li>
+                                <li>Exhale and bow forward, resting forehead on mat.</li>
+                                <li>Extend arms forward or rest them by your sides.</li>
+                                <li>Release all tension and breathe into your back.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Asana 3 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-md transition">
+                        <div class="h-64 overflow-hidden bg-stone-200">
+                            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Warrior II" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-stone-800 mb-1">Warrior II [Image of Warrior II yoga pose]</h3>
+                            <p class="text-sm text-orange-700 font-semibold mb-4">Virabhadrasana II</p>
+                            <p class="text-stone-600 mb-4">Increases stamina and concentration while opening the hips and chest.</p>
+                            <h4 class="font-bold text-sm uppercase text-stone-500 mb-2">How to do it:</h4>
+                            <ul class="list-disc list-inside text-stone-600 space-y-1 text-sm">
+                                <li>Step feet wide apart. Turn right foot out 90°.</li>
+                                <li>Bend right knee over right ankle.</li>
+                                <li>Extend arms out to sides, gaze over right hand.</li>
+                                <li>Keep torso centered and shoulders down.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Asana 4 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-md transition">
+                        <div class="h-64 overflow-hidden bg-stone-200">
+                            <img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tree Pose" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-stone-800 mb-1">Tree Pose [Image of Tree Pose yoga pose]</h3>
+                            <p class="text-sm text-orange-700 font-semibold mb-4">Vrksasana</p>
+                            <p class="text-stone-600 mb-4">Improves balance and focus. Symbolizes rooted connection and growth.</p>
+                            <h4 class="font-bold text-sm uppercase text-stone-500 mb-2">How to do it:</h4>
+                            <ul class="list-disc list-inside text-stone-600 space-y-1 text-sm">
+                                <li>Stand in Mountain Pose. Shift weight to left foot.</li>
+                                <li>Place right foot on left inner thigh or calf.</li>
+                                <li>Avoid the knee joint. Bring hands to prayer at chest.</li>
+                                <li>Find a steady gaze point (Drishti) and breathe.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SUBTOPIC 2: SOCIAL CONNECTION ================= -->
+        <div id="social" class="page-section">
+             <div class="bg-blue-900 text-blue-50 py-12">
+                <div class="max-w-4xl mx-auto px-4">
+                    <button onclick="navigateTo('home')" class="mb-6 flex items-center text-blue-200 hover:text-white transition text-sm uppercase tracking-wider font-semibold">
+                        <i data-lucide="arrow-left" class="mr-2 h-4 w-4"></i> Back to Home
+                    </button>
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4">Movement & Connection</h1>
+                    <p class="text-xl text-blue-200">How synchronized movement builds social glue.</p>
+                </div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto px-4 py-12">
+                 <div class="grid md:grid-cols-2 gap-8 mb-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-stone-900 mb-4">The Power of Synchrony</h3>
+                        <p class="text-stone-600 leading-relaxed">
+                            Anthropologists have long noted that communities that move together—whether through dance, drill, or yoga—survive longer. Moving in unison releases endorphins and oxytocin (the bonding hormone). In a yoga class, even without speaking, the act of flowing through a sequence together creates a powerful non-verbal bond.
+                        </p>
+                    </div>
+                    <div class="bg-stone-200 rounded-xl h-64 w-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Yoga Together" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <div class="prose prose-lg prose-stone mx-auto">
+                    <h3>Breaking Isolation Barriers</h3>
+                    <p>
+                        For many, entering a social space requires "masking" or performing a social role. Yoga studios and community centers often operate on a different premise:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-stone-700">
+                        <li><strong>Authenticity:</strong> Physical effort strips away pretenses. It is hard to maintain a social mask while holding a difficult pose.</li>
+                        <li><strong>Shared Vulnerability:</strong> Falling out of a balance pose and laughing about it creates a safe environment for failure and imperfection.</li>
+                        <li><strong>Inclusivity:</strong> Adaptive yoga shows that regardless of ability, age, or background, the community creates space for everyone on the mat.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SUBTOPIC 3: MUTUAL RESPECT ================= -->
+        <div id="respect" class="page-section">
+             <div class="bg-stone-800 text-stone-50 py-12">
+                <div class="max-w-4xl mx-auto px-4">
+                    <button onclick="navigateTo('home')" class="mb-6 flex items-center text-stone-300 hover:text-white transition text-sm uppercase tracking-wider font-semibold">
+                        <i data-lucide="arrow-left" class="mr-2 h-4 w-4"></i> Back to Home
+                    </button>
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4">Cultivating Mutual Respect</h1>
+                    <p class="text-xl text-stone-300">Applying the Yamas and Niyamas to social fabric.</p>
+                </div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto px-4 py-12">
+                <div class="prose prose-lg prose-stone mx-auto">
+                    <p class="lead text-xl text-stone-600 mb-8">
+                        Yoga is often misunderstood as purely physical, but its roots are ethical. The first limb of yoga is the <strong>Yamas</strong> (social restraints), which directly guide how we treat our neighbors.
+                    </p>
+
+                    <div class="grid gap-6">
+                        <div class="border border-stone-200 rounded-lg p-6 hover:bg-stone-50 transition">
+                            <h4 class="text-xl font-bold text-teal-700 mb-2">Ahimsa (Non-violence)</h4>
+                            <p class="text-stone-600">Beyond physical harm, this teaches non-violent communication and kindness in thought. In a community setting, this manifests as creating safe spaces where gossip and judgment are discouraged.</p>
+                        </div>
+                        
+                        <div class="border border-stone-200 rounded-lg p-6 hover:bg-stone-50 transition">
+                            <h4 class="text-xl font-bold text-teal-700 mb-2">Satya (Truthfulness)</h4>
+                            <p class="text-stone-600">Encouraging authentic expression. When a community values Satya, members feel safe to express their true needs without fear of ostracization.</p>
+                        </div>
+                        
+                        <div class="border border-stone-200 rounded-lg p-6 hover:bg-stone-50 transition">
+                            <h4 class="text-xl font-bold text-teal-700 mb-2">Aparigraha (Non-greed)</h4>
+                            <p class="text-stone-600">Teaching us to take only what we need. This fosters a culture of sharing resources and volunteering time, rather than competition.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 text-center">
+                        <h3 class="font-serif italic text-2xl mb-4">"Namaste"</h3>
+                        <p>
+                            The ubiquitous greeting at the end of class translates roughly to <em>"The light in me honors the light in you."</em> It is a ritualized affirmation of equality and mutual respect that, when repeated weekly, changes how we view strangers on the street.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= AI TOOLS SECTION ================= -->
+        <div id="ai-tools" class="page-section">
+            <div class="bg-purple-900 text-purple-50 py-12">
+                <div class="max-w-4xl mx-auto px-4">
+                    <button onclick="navigateTo('home')" class="mb-6 flex items-center text-purple-200 hover:text-white transition text-sm uppercase tracking-wider font-semibold">
+                        <i data-lucide="arrow-left" class="mr-2 h-4 w-4"></i> Back to Home
+                    </button>
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4">AI Community Guide</h1>
+                    <p class="text-xl text-purple-200">Intelligent tools to foster deeper connection.</p>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-4 py-12">
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    
+                    <!-- Tool 1: Practice Generator -->
+                    <div class="bg-white rounded-2xl shadow-lg border border-purple-100 overflow-hidden">
+                        <div class="bg-purple-50 p-6 border-b border-purple-100">
+                            <div class="flex items-center mb-2">
+                                <div class="p-2 bg-purple-200 rounded-lg mr-3">
+                                    <i data-lucide="sparkles" class="text-purple-700 h-6 w-6"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-purple-900">Personalized Practice</h3>
+                            </div>
+                            <p class="text-purple-700 text-sm">Generate a custom short mindfulness or movement sequence based on your community's current mood.</p>
+                        </div>
+                        <div class="p-6">
+                            <label class="block text-sm font-medium text-stone-700 mb-2">How is the group feeling today?</label>
+                            <textarea id="moodInput" rows="2" class="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 mb-4" placeholder="e.g., Stressed, Low Energy, Disconnected, Celebrating..."></textarea>
+                            
+                            <button onclick="generatePractice()" id="practiceBtn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-xl transition flex items-center justify-center shadow-md">
+                                Generate Session ✨
+                            </button>
+
+                            <!-- Output Area -->
+                            <div id="practiceOutput" class="mt-6 hidden">
+                                <div class="h-px bg-stone-200 mb-6"></div>
+                                <h4 class="font-bold text-stone-800 mb-3 flex items-center">
+                                    <i data-lucide="scroll" class="w-4 h-4 mr-2 text-purple-600"></i> Your Custom Sequence
+                                </h4>
+                                <div id="practiceContent" class="text-stone-700 text-sm leading-relaxed markdown-content bg-stone-50 p-4 rounded-lg border border-stone-100"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 2: Icebreaker Generator -->
+                    <div class="bg-white rounded-2xl shadow-lg border border-teal-100 overflow-hidden">
+                        <div class="bg-teal-50 p-6 border-b border-teal-100">
+                            <div class="flex items-center mb-2">
+                                <div class="p-2 bg-teal-200 rounded-lg mr-3">
+                                    <i data-lucide="message-circle-heart" class="text-teal-700 h-6 w-6"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-teal-900">Deep Connection Icebreakers</h3>
+                            </div>
+                            <p class="text-teal-700 text-sm">Move beyond small talk. Generate thoughtful questions to spark meaningful dialogue in your circle.</p>
+                        </div>
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="bg-teal-50/50 p-4 rounded-lg border border-teal-100 mb-6 flex-grow flex items-center justify-center min-h-[150px]">
+                                <p id="icebreakerContent" class="text-center text-stone-600 italic text-lg">
+                                    "Click the button below to receive a question for your community."
+                                </p>
+                            </div>
+                            
+                            <button onclick="generateIcebreaker()" id="icebreakerBtn" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 rounded-xl transition flex items-center justify-center shadow-md mt-auto">
+                                Generate Question ✨
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="mt-12 text-center text-stone-400 text-xs">
+                    <p>AI-generated content can be unpredictable. Please use these suggestions as a starting point and adapt to your community's needs.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-white font-bold text-xl">SanghaWell</span>
+                <p class="text-sm mt-2">Building bridges through breath.</p>
+            </div>
+            <div class="flex space-x-6 text-sm">
+                <a href="#" class="hover:text-white transition">Community Guidelines</a>
+                <a href="#" class="hover:text-white transition">Find a Class</a>
+                <a href="#" class="hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for SPA Navigation and AI Integration -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Navigation Logic
+        function navigateTo(pageId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            const target = document.getElementById(pageId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // --- GEMINI API INTEGRATION ---
+        const apiKey = ""; // In preview, this is auto-filled. In download, it's empty.
+
+        // Helper to manage API key for downloaded files
+        function getApiKey() {
+            if (apiKey && apiKey.length > 0) return apiKey; // Use injected key if present
+            
+            // Check local storage
+            let storedKey = localStorage.getItem("gemini_api_key");
+            if (storedKey) return storedKey;
+
+            // Prompt user
+            const userKey = prompt("To use AI features in this downloaded file, please enter your Google Gemini API Key:\n(It will be saved in your browser for next time)");
+            if (userKey) {
+                localStorage.setItem("gemini_api_key", userKey);
+                return userKey;
+            }
+            return null;
+        }
+
+        async function callGemini(prompt) {
+            const key = getApiKey();
+            if (!key) {
+                alert("API Key is required to use the AI features.");
+                return null;
+            }
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${key}`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }]
+            };
+
+            try {
+                let response;
+                let lastError;
+                
+                for (let i = 0; i < 3; i++) {
+                    try {
+                        response = await fetch(url, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        
+                        if (response.ok) break;
+                        if (response.status >= 400 && response.status < 500 && response.status !== 429) break;
+                        
+                        await new Promise(r => setTimeout(r, 1000 * Math.pow(2, i)));
+                    } catch (e) {
+                        lastError = e;
+                        await new Promise(r => setTimeout(r, 1000));
+                    }
+                }
+
+                if (!response) throw lastError || new Error("Network request failed.");
+                
+                if (!response.ok) {
+                    if (response.status === 400 || response.status === 403) {
+                        localStorage.removeItem("gemini_api_key"); // Clear bad key
+                        throw new Error("Invalid API Key. Please refresh and try again.");
+                    }
+                    throw new Error(`API Error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                if (!data.candidates || !data.candidates[0]?.content) return "I couldn't generate a response right now.";
+
+                return data.candidates[0].content.parts[0].text;
+            } catch (error) {
+                console.error('Gemini API Error:', error);
+                alert(error.message);
+                return null;
+            }
+        }
+
+        // Feature 1: Practice Generator
+        async function generatePractice() {
+            const mood = document.getElementById('moodInput').value || "general well-being";
+            const btn = document.getElementById('practiceBtn');
+            const outputDiv = document.getElementById('practiceOutput');
+            const contentDiv = document.getElementById('practiceContent');
+
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = `<i data-lucide="loader-2" class="animate-spin h-5 w-5 mr-2"></i> Creating Sequence...`;
+            lucide.createIcons();
+            btn.disabled = true;
+
+            const prompt = `Create a short, gentle 5-minute yoga or mindfulness sequence for a group of people who are feeling: "${mood}". 
+            Focus on social connection and community support. 
+            Format using Markdown: Use bold for pose names/actions and bullet points for steps. Keep it concise and encouraging.`;
+
+            const result = await callGemini(prompt);
+
+            if (result) {
+                outputDiv.classList.remove('hidden');
+                if (typeof marked !== 'undefined') {
+                    contentDiv.innerHTML = marked.parse(result);
+                } else {
+                    contentDiv.innerText = result;
+                }
+            }
+
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+            lucide.createIcons();
+        }
+
+        // Feature 2: Icebreaker Generator
+        async function generateIcebreaker() {
+            const btn = document.getElementById('icebreakerBtn');
+            const contentP = document.getElementById('icebreakerContent');
+
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = `<i data-lucide="loader-2" class="animate-spin h-5 w-5 mr-2"></i> Thinking...`;
+            lucide.createIcons();
+            btn.disabled = true;
+
+            const prompt = `Generate ONE single, profound question to ask a group of strangers or neighbors to help them connect deeply. 
+            Avoid weather or job questions. Focus on shared humanity, hopes, gratitude, or childhood memories. 
+            Return ONLY the question text. No intro/outro.`;
+
+            const result = await callGemini(prompt);
+
+            if (result) {
+                contentP.innerText = result.trim().replace(/^"|"$/g, '');
+                contentP.classList.add('text-teal-900', 'font-semibold');
+                contentP.classList.remove('text-stone-600', 'italic');
+            }
+
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+            lucide.createIcons();
+        }
+
+    </script>
+</body>
+</html>
